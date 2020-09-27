@@ -4,7 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
  public class empSystem implements IComputeEmpWage{
-	 public static final int IS_FULL_TIME = 1;
+
+		public static final int IS_FULL_TIME = 1;
 		public static final int IS_PART_TIME = 2;
 	   
 		private ArrayList<CompanyEmpWage> companyEmpWageList;
@@ -23,10 +24,11 @@ import java.util.Map;
 	    }
 	    @Override
 		public void computeEmpWage() {
-			CompanyEmpWage companyEmpWage = companyEmpWageList.get(0);
+	    	for(int i = 0; i < companyEmpWageList.size(); i++){
+			CompanyEmpWage companyEmpWage = companyEmpWageList.get(i);
 			companyEmpWage.setTotalEmpWage(this.computeEmpWage(companyEmpWage));
 			System.out.println(companyEmpWage);
-
+	      }
 		}
 		private int computeEmpWage(CompanyEmpWage companyEmpWage) {
 			int empHours = 0, totalEmpHours = 0, totalWorkingDays = 0;
@@ -65,5 +67,4 @@ import java.util.Map;
 			 empWageBuilder.addCompanyEmpWage("BigBazar",  10,  4,  20);
 			 empWageBuilder.computeEmpWage();
 		 }
-
 }
