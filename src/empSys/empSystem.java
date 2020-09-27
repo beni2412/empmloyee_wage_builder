@@ -5,7 +5,7 @@ import java.util.Map;
 
  public class empSystem implements IComputeEmpWage{
 
-		public static final int IS_FULL_TIME = 1;
+	 public static final int IS_FULL_TIME = 1;
 		public static final int IS_PART_TIME = 2;
 	   
 		private ArrayList<CompanyEmpWage> companyEmpWageList;
@@ -59,12 +59,13 @@ import java.util.Map;
 		
 		@Override
 		public int getTotalWage(String company) {
-			return 0;
+			return companyToEmpWageMap.get(company).totalEmpWage;
 		}
 		 public static void main(String[] args) {
 			 empSystem empWageBuilder = new empSystem();
 			 empWageBuilder.addCompanyEmpWage("Reliance",  20,  5,  10);
 			 empWageBuilder.addCompanyEmpWage("BigBazar",  10,  4,  20);
 			 empWageBuilder.computeEmpWage();
+			 System.out.println("Total Wage for BigBazar: "+ empWageBuilder.getTotalWage( "BigBazar"));
 		 }
 }
