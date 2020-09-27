@@ -35,7 +35,6 @@ import java.util.Random;
 		public static void main(String[] args) {
 	     computeEmpWage("Reliance", 15, 25 , 100);
 	     computeEmpWage("BigBazar", 20, 27 , 90);
-		}
- }
 
+		}
 
