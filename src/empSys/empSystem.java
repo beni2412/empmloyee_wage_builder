@@ -1,7 +1,8 @@
 package empSys;
 import java.util.Random;
- public class empSystem {
-	 public static final int IS_FULL_TIME = 1;
+ public class empSystem implements IComputeEmpWage{
+		
+		public static final int IS_FULL_TIME = 1;
 		public static final int IS_PART_TIME = 2;
 	   
 		public int numOfCompany = 0;
@@ -10,12 +11,13 @@ import java.util.Random;
 	    public empSystem() {
 	    	companyEmpWageArray = new CompanyEmpWage[5];
 	    }
-	    private void addCompanyEmpWage(String company, int empRatePerHour,int numOfWorkingDays, int maxHoursPerMonth ) {
+	    @Override
+	    public void addCompanyEmpWage(String company, int empRatePerHour,int numOfWorkingDays, int maxHoursPerMonth ) {
 	    	companyEmpWageArray[numOfCompany] = new CompanyEmpWage(company, empRatePerHour, numOfWorkingDays, maxHoursPerMonth);
 	    numOfCompany++;
 	    }
-	    
-		private void computeEmpWage() {
+	    @Override
+		public void computeEmpWage() {
 			for(int i =0; i < numOfCompany; i++) {
 				companyEmpWageArray[i].setTotalEmpWage(this.computeEmpWage(companyEmpWageArray[i]));
 			System.out.println(companyEmpWageArray[i]);
@@ -47,9 +49,14 @@ import java.util.Random;
 	       return totalEmpHours * companyEmpWage.empRatePerHour;
 
 		}
+		
+		@Override
+		public int getTotalWage(String company) {
+			return 0;
+		}
 		 public static void main(String[] args) {
 			 empSystem empWageBuilder = new empSystem();
-			 empWageBuilder.addCompanyEmpWage("Reliance",  20,  2,  10);
+			 empWageBuilder.addCompanyEmpWage("Reliance",  20,  5,  10);
 			 empWageBuilder.addCompanyEmpWage("BigBazar",  10,  4,  20);
 			 empWageBuilder.computeEmpWage();
 		 }
